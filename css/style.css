@@ -1,0 +1,210 @@
+/* -- public - html - body -- */
+html {
+    background: #FFDE00;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+}
+
+body {
+}
+
+/* -- navigation - menu -- */
+nav.menu {
+    font-family: 'Pixeled';
+    font-size: 8px;
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+nav.menu ul {
+    transform: rotate(90deg);
+    position: relative;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* height: 50vw; */
+    width: 30vh;
+    position: absolute;
+}
+
+nav.menu ul li {
+    position: relative;
+    float: left;
+}
+
+nav.menu ul li a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* --footer -  background effect -- */
+.bg-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 999999;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+line.st0 {
+    height: 0;
+}
+
+svg#Layer_1 rect {
+    height: 0px;
+    width: 1px;
+    transition: 400ms ease-in-out;
+}
+
+svg#Layer_1 rect.rectop {
+    transition: 400ms ease-in-out;
+    animation: rain 1000ms 1;
+}
+
+.rain-box {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-filter: blur(0.05em);
+    filter: blur(0.05em);
+}
+
+.rain-box div.rain-sp {
+    width: 1px;
+    background: #575756;
+}
+
+.rain-box.o div.rain-sp {
+    transition: 400ms ease-in-out;
+    animation: rain 1500ms 1;
+}
+
+.rain-box.blur0 {
+    -webkit-filter: blur(0.03em);
+    filter: blur(0.03em);
+}
+
+.rain-box.blur1 {
+    -webkit-filter: blur(0.05em);
+    filter: blur(0.05em);
+}
+
+.rain-box.blur2 {
+    -webkit-filter: blur(0.1em);
+    filter: blur(0.1em);
+}
+
+.rain-box.blur3 {
+    -webkit-filter: blur(0.15em);
+    filter: blur(0.15em);
+}
+.rain-box.blur4 {
+    -webkit-filter: blur(0.3em);
+    filter: blur(0.3em);
+}
+.rain-box.blur3 div,.rain-box.blur4 div{
+    width:2px;
+}
+
+@keyframes rain {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 12px;
+    }
+
+    100% {
+        height: 0;
+    }
+}
+
+/* --footer -  loading -- */
+.loading-views {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    box-sizing: border-box;
+    font-family: 'Pixeled';
+    color: #ffde00 !important;
+    z-index: 158;
+}
+
+section.loading {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    /* opacity: 0; */
+    left: 0;
+    transition: 1s ease all;
+    pointer-events: none;
+}
+
+.loading-lines {
+    width: 100px;
+    float: left;
+    height: 0;
+    background: #575757;
+    transition: 2000ms ease-in-out;
+}
+
+.loading.op .loading-lines {
+    height: 100%;
+}
+
+.loading-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+section.home-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-sign-container {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    perspective: 1000px;
+    transform: rotateX(0deg) rotateY(90deg);
+    transition: 1s ease;
+}
+
+.home-container.op .home-sign-container {
+    transform: rotateX(0deg) rotateY(0);
+}
