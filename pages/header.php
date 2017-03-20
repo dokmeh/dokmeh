@@ -9,9 +9,10 @@
         <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="js/jquery.min.js"></script>
+        <script src="js/TweenMax.js"></script>
         <script src="js/script.js"></script>
     </head>
-    <body data-page="<?= $page  ?>">
+    <body data-page="<?= $page  ?>" class="black">
         <nav class="menu">
             <ul>
                  <li class="menu-li"><a href="projects" data-page="projects" data-title="Dokframe-projects">Projects</a></li>
@@ -20,4 +21,4 @@
                  <li class="menu-li"><a href="contact" data-page="contact" data-title="Dokframe-contact us">Contact us</a></li>
             </ul>
         </nav>
-        <section class="inner-ajax">
+        <section class="inner-ajax scaleDown">

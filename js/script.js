@@ -56,18 +56,77 @@ function loadAjax(url)
 
 //Pages functions
 //Home
-function home()
-{
-
+function home() {
+    homecon.addClass('op')
     setTimeout(function () {
         loading('close');
-    },1000);
-    setTimeout(function () {
-        homecon.addClass('op')
-    },4000);
+    }, 1000);
 
+
+
+    var timeout;
+    var count = 0;
+
+    /*        clicker.mousedown(function(){
+     timeout = setInterval(function(){
+     clicker.text(count++);
+     }, 500);
+
+     return false;
+     });
+
+     $(document).mouseup(function(){
+     clearInterval(timeout);
+     return false;
+     });*/
+
+
+    var keyPressed = false;
+
+    $(document).on('keydown', function (e) {
+        var key;
+        if (keyPressed === false) {
+            keyPressed = true;
+            key = String.fromCharCode(e.keyCode);
+
+            //this is where you map your key
+            
+                console.log(key);
+                timeout = setInterval(function () {
+                    count++;
+                    console.log(count);
+                }, 500);
+                zoomstatus(true);
+                return false;
+            
+        }
+        $(this).on('keyup', function () {
+            if (keyPressed === true) {
+                keyPressed = false;
+                console.log('Key no longer held down');
+                if(count<=15){
+                    zoomstatus(false);
+                }
+                clearInterval(timeout);
+
+                return false;
+            }
+            count = 0;
+        });
+    });
+    function zoomstatus(x) {
+            if(x == true){
+                $('.rain-zoom').removeClass('noScale').addClass('scaleUp');
+                $('body').removeClass('black');
+                $('.inner-ajax, .bg-effect').removeClass('scaleDown').addClass('noScale');
+            }else{
+                $('body').addClass('black');
+                $('.rain-zoom').addClass('noScale').removeClass('scaleUp');
+                $('.inner-ajax, .bg-effect').addClass('scaleDown').removeClass('noScale');
+            }
+
+    }
 }
-
 //Projects
 function projects()
 {
