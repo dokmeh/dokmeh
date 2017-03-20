@@ -11,7 +11,7 @@ body {
 
 /* -- navigation - menu -- */
 nav.menu {
-    font-family: 'Pixeled';
+    font-family: 'VT323', monospace;
     font-size: 8px;
     position: fixed;
     right: 0;
@@ -56,7 +56,7 @@ nav.menu ul li a {
     overflow: hidden;
     z-index: 999999;
     pointer-events: none;
-    mix-blend-mode: screen;
+    /* mix-blend-mode: screen; */
 }
 
 line.st0 {
@@ -93,7 +93,7 @@ svg#Layer_1 rect.rectop {
 
 .rain-box.o div.rain-sp {
     transition: 400ms ease-in-out;
-    animation: rain 1500ms 1;
+    animation: rain 500ms 1;
 }
 
 .rain-box.blur0 {
@@ -115,12 +115,14 @@ svg#Layer_1 rect.rectop {
     -webkit-filter: blur(0.15em);
     filter: blur(0.15em);
 }
+
 .rain-box.blur4 {
     -webkit-filter: blur(0.3em);
     filter: blur(0.3em);
 }
-.rain-box.blur3 div,.rain-box.blur4 div{
-    width:2px;
+
+.rain-box.blur3 div,.rain-box.blur4 div {
+    width: 2px;
 }
 
 @keyframes rain {
@@ -147,7 +149,7 @@ svg#Layer_1 rect.rectop {
     align-items: center;
     padding: 0 50px;
     box-sizing: border-box;
-    font-family: 'Pixeled';
+    font-family: 'VT323', monospace;
     color: #ffde00 !important;
     z-index: 158;
 }
@@ -207,4 +209,58 @@ section.home-container {
 
 .home-container.op .home-sign-container {
     transform: rotateX(0deg) rotateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 320px) {
+    .rain-box.blur0 {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+
+    .rain-box.blur1 {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+
+    .rain-box.blur2 {
+        -webkit-filter: blur(0;
+        filter: blur(0;
+    }
+
+    .rain-box.blur3 {
+        -webkit-filter: blur(0);
+        filter: blur(0);
+    }
+}
+
+@media (min-width: 481px) {
+    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+}
+
+@media (min-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+}
+
+@media (min-width: 961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+}
+
+@media (min-width: 1025px) {
+    /* big landscape tablets, laptops, and desktops */
+}
+
+@media (min-width: 1281px) {
+    /* hi-res laptops and desktops */
 }

@@ -17,7 +17,8 @@ $(document).ready(function(){
     body.addClass('body-op');
     rain();
     loading('create');
-    loading('open');
+    gyro();
+    //loading('open');
     window[$('body').attr('data-page')]();
     $('nav.menu ul li a').click(function(){
         $('title').text($(this).attr('data-title'));
@@ -57,7 +58,10 @@ function loadAjax(url)
 //Home
 function home()
 {
-    loading('close');
+
+    setTimeout(function () {
+        loading('close');
+    },1000);
     setTimeout(function () {
         homecon.addClass('op')
     },4000);
@@ -140,5 +144,79 @@ function loading(status) {
     if(status == 'close'){
         $('.loading').removeClass('op');
     }
+
+}
+
+
+
+function gyro(){
+
+
+
+        var has_touch = 'ontouchstart' in document.documentElement;
+        var accX, accY, width, height, xA, yA, movement;
+
+        if(has_touch || screen.width <= 699) {
+
+            (resize = function() {
+
+                height = $(window).height();
+                width = $(window).width();
+
+                $('.bg-effect').width(width).height(height);
+
+
+            })();
+
+            window.ondevicemotion = function(event) {
+
+                accX = Math.round(event.accelerationIncludingGravity.x*10) / 10;
+                accY = Math.round(event.accelerationIncludingGravity.y*10) / 10;
+
+                movement = 10;
+
+                xA = -(accX / 10) * movement;
+                yA = -(accY / 10) * movement;
+
+
+                run();
+
+            }
+
+        } else {
+
+            $('.content').show();
+
+            $('.bg-effect').addClass('fullscreen').mousemove(function(e) {
+
+                width = $(this).width();
+                height = $(this).height();
+
+                accX = (((e.pageX - this.offsetLeft)*2 / width) * 10) - 10;
+                accY = (((e.pageY - this.offsetTop)*2 / width) * 10) - 10;
+
+                xA = -(accX*10);
+                yA = -(accY*10);
+
+                movement = 2;
+
+                run();
+
+            });
+
+
+        }
+
+        function run() {
+            bX = -(xA*2)-100;
+            bY = -(yA*2)-300;
+            $('.bg-effect').css({'left' : (bX*1.5)+'px'});
+        //alert(xA);
+
+
+            $('.home-sign-container').css({'-webkit-transform' : rotate(bX*20)+'deg','transform' : rotate(bX*20)+'deg'});
+
+        }
+
 
 }
