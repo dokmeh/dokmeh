@@ -1,13 +1,13 @@
         </section>
 
-        <!--<section class="loading op">
+        <section class="loading op">
             <div class="loading-views">
                 <p>Wait</p>
             </div>
             <div class="loading-bg">
-                <div class="loading-lines"></div>
+
             </div>
-        </section>-->
+        </section>
         <div class="bg-effect scaleDown">
             <div class="rain-box">
                 <div class="rain-sp"></div>

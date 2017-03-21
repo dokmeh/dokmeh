@@ -60,34 +60,20 @@ function home() {
     homecon.addClass('op')
     setTimeout(function () {
         loading('close');
-    }, 1000);
+    }, 100);
 
 
 
     var timeout;
     var count = 0;
 
-    /*        clicker.mousedown(function(){
-     timeout = setInterval(function(){
-     clicker.text(count++);
-     }, 500);
-
-     return false;
-     });
-
-     $(document).mouseup(function(){
-     clearInterval(timeout);
-     return false;
-     });*/
-
-
     var keyPressed = false;
 
-    $(document).on('keydown', function (e) {
+    $(document).on('keydown mousedown', function (e) {
         var key;
         if (keyPressed === false) {
             keyPressed = true;
-            key = String.fromCharCode(e.keyCode);
+/*            key = String.fromCharCode(e.keyCode);*/
 
             //this is where you map your key
             
@@ -100,7 +86,7 @@ function home() {
                 return false;
             
         }
-        $(this).on('keyup', function () {
+        $(this).on('keyup mouseup mouseleave', function () {
             if (keyPressed === true) {
                 keyPressed = false;
                 console.log('Key no longer held down');
@@ -114,6 +100,9 @@ function home() {
             count = 0;
         });
     });
+
+    var timeoutId = 0;
+
     function zoomstatus(x) {
             if(x == true){
                 $('.rain-zoom').removeClass('noScale').addClass('scaleUp');
@@ -193,7 +182,7 @@ function loading(status) {
     var n = 0;
     if(status == 'create'){
         for (i = 0; i<StageW; i++){
-            n = (i*100)+100;
+            n = (i*25);
             $( ".loading-bg" ).append( '<div class="loading-lines" style="-webkit-transition-delay: '+n+'ms;-moz-transition-delay: '+n+'ms;-ms-transition-delay: '+n+'ms;-o-transition-delay: '+n+'ms;transition-delay: '+n+'ms;"></div>' );
         }
     }
@@ -278,4 +267,40 @@ function gyro(){
         }
 
 
+}
+var thread;
+var set;
+
+function mousedegree() {
+    $(window).mousemove(function(e) {
+        //getDirection(e);
+        if (!set) {
+            x1 = e.pageX, //set starting mouse x
+            y1 = e.pageY, //set starting mouse y
+            set = true;
+        }
+        clearTimeout(thread);
+        thread = setTimeout(callback.bind(this, e), 100);
+    });
+
+    function getAngle (x1, y1, x2, y2) {
+        var distY = Math.abs(y2-y1); //opposite
+        var distX = Math.abs(x2-x1); //adjacent
+        var dist = Math.sqrt((distY*distY)+(distX*distX)); //hypotenuse,
+        //don't know if there is a built in JS function to do the square of a number
+        var val = distY/dist;
+        var aSine = Math.asin(val);
+        return aSine * (270/Math.PI); //return angle in degrees
+    }
+
+    function callback(e) {
+        x2 = e.pageX; //new X
+        y2 = e.pageY; //new Y
+
+        console.log("ANGLE: " + getAngle(x1, y1, x2, y2));
+        console.log("mouse has stopped");
+
+        $('.rain-box').css({'transform':'rotate('+getAngle(x1, y1, x2, y2)+'deg)'});
+        set = false;
+    }
 }
