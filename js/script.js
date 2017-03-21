@@ -7,18 +7,18 @@ var i = 0;
 
 
 $(document).ready(function(){
+    loading('open');
     navli = $('.menu-li');
     navNum = $('.menu-li').length;
     body = $('body');
-    homecon = $('.home-container');
     n = 0;
     i = 0;
 
     body.addClass('body-op');
-    rain();
-    loading('create');
+    //rain();
     gyro();
     //loading('open');
+    loadAjax(window[$('body').attr('data-page')]());
     window[$('body').attr('data-page')]();
     $('nav.menu ul li a').click(function(){
         $('title').text($(this).attr('data-title'));
@@ -35,34 +35,62 @@ $(document).ready(function(){
     //     n = (i*300);
     //     navli.eq(i).css({'-webkit-transition-delay':n+'ms','-ms-transition-delay':n+'ms','-moz-transition-delay':n+'ms','transition-delay':n+'ms',});
     // }
+
 });
 
 function loadAjax(url)
 {
-    $.ajax({
-        url: url,
-        type: 'post',
-        dataType: 'html',
-        cache: false,
-        beforeSend: function(xhr){
-            $('.inner-ajax *').off();
-        },
-        success: function(result, status, xhr){
-            $('.inner-ajax').html(result);
-            window[$('body').attr('data-page')]();
-        }
-    });
+    loading('open');
+    setTimeout(function () {
+        $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'html',
+            cache: false,
+            beforeSend: function(xhr){
+                rain('off');
+
+                    $('.inner-ajax *').off();
+
+            },
+            success: function(result, status, xhr){
+                $('.inner-ajax').html(result);
+                window[$('body').attr('data-page')]();
+
+                setTimeout(function () {
+                    $('body').removeClass('black');
+                    loading('close');
+                    rain('on');
+                }, 1000);
+
+            }
+        });
+    },1000);
+
 }
 
 //Pages functions
 //Home
 function home() {
-    homecon.addClass('op')
+
+
+
+
     setTimeout(function () {
-        loading('close');
-    }, 100);
+        $('.home-container').addClass('op')
+    }, 2000);
+    Typed.new('.home-type', {
+        strings: ["who we are...?", "where we start...?", "where we are going...?", "we decide who we are"],
+        typeSpeed: 0,
+        loop: true,
+        showCursor: false,
+        startDelay: 4000,
+        backDelay: 3000,
+
+    });
 
 
+/*
 
     var timeout;
     var count = 0;
@@ -73,7 +101,7 @@ function home() {
         var key;
         if (keyPressed === false) {
             keyPressed = true;
-/*            key = String.fromCharCode(e.keyCode);*/
+/!*            key = String.fromCharCode(e.keyCode);*!/
 
             //this is where you map your key
             
@@ -99,11 +127,11 @@ function home() {
             }
             count = 0;
         });
-    });
+    });*/
 
     var timeoutId = 0;
 
-    function zoomstatus(x) {
+/*    function zoomstatus(x) {
             if(x == true){
                 $('.rain-zoom').removeClass('noScale').addClass('scaleUp');
                 $('body').removeClass('black');
@@ -114,8 +142,10 @@ function home() {
                 $('.inner-ajax, .bg-effect').addClass('scaleDown').removeClass('noScale');
             }
 
-    }
+    }*/
+
 }
+
 //Projects
 function projects()
 {
@@ -147,50 +177,54 @@ function about()
     console.log('This is about page!');
 }
 
-function rain(){
+function rain(status){
+    if(status == 'on'){
+        setTimeout(function () {
+                var w = body.width();
+                var h = body.height();
+                var bw = $('.rain-box').width();
+                var whNum = (w*h / (bw*bw)+50);
+                console.log(whNum);
+                for(i = 0; i<= whNum; i++){
+                    $( ".bg-effect" ).append( '<div class="rain-box"><div class="rain-sp"></div></div>' );
+                }
+                for(i = 0; i<= (whNum); i++){
+                    var n = Math.floor(Math.random() * (4 + 1));
+                    $('.rain-box').eq(i).addClass('blur'+n);
+                }
 
-    var w = body.width();
-    var h = body.height();
-    var bw = $('.rain-box').width();
-    var whNum = (w*h / (bw*bw)+50);
-    console.log(whNum);
-    for(i = 0; i<= whNum; i++){
-        $( ".bg-effect" ).append( '<div class="rain-box"><div class="rain-sp"></div></div>' );
+
+                var line = $('.bg-effect .rain-box');
+                var max = line.length;
+                var n = 0;
+                setInterval(function () {
+                    n =  Math.floor(Math.random() * (max + 1));
+                    line.eq(n).addClass('o');
+                },3);
+                setInterval(function () {
+                    n =  Math.floor(Math.random() * (max + 1));
+                    line.eq(n).removeClass('o');
+                },5);
+                $( ".bg-effect" ).addClass('op');
+        },2000);
+    }else{
+        $( ".bg-effect" ).addClass('op');
+        setTimeout(function () {
+            $( ".bg-effect *" ).off();
+        },2000);
+
     }
-    for(i = 0; i<= (whNum); i++){
-        var n = Math.floor(Math.random() * (4 + 1));
-        $('.rain-box').eq(i).addClass('blur'+n);
-    }
-
-
-    var line = $('.bg-effect .rain-box');
-    var max = line.length;
-    var n = 0;
-    setInterval(function () {
-        n =  Math.floor(Math.random() * (max + 1));
-        line.eq(n).addClass('o');
-    },3);
-    setInterval(function () {
-        n =  Math.floor(Math.random() * (max + 1));
-        line.eq(n).removeClass('o');
-    },5);
 
 }
 function loading(status) {
     var StageW = $(document).width()/100;
     var i = 0;
     var n = 0;
-    if(status == 'create'){
-        for (i = 0; i<StageW; i++){
-            n = (i*25);
-            $( ".loading-bg" ).append( '<div class="loading-lines" style="-webkit-transition-delay: '+n+'ms;-moz-transition-delay: '+n+'ms;-ms-transition-delay: '+n+'ms;-o-transition-delay: '+n+'ms;transition-delay: '+n+'ms;"></div>' );
-        }
-    }
     if(status == 'open'){
         $('.loading').addClass('op');
     }
     if(status == 'close'){
-        $('.loading').removeClass('op');
+        $('.loading').removeClass('op opf');
     }
 
 }
@@ -256,13 +290,13 @@ function gyro(){
         }
 
         function run() {
-            bX = -(xA*2)-100;
+            bX = -(xA*2);
             bY = -(yA*2)-300;
-            $('.bg-effect').css({'left' : (bX*1.5)+'px'});
+            $('.bg-effect').css({'left' : (bX)+'px'});
         //alert(xA);
 
 
-            $('.home-sign-container').css({'-webkit-transform' : rotate(bX*20)+'deg','transform' : rotate(bX*20)+'deg'});
+            //$('.home-sign-container').css({'-webkit-transform' : rotate(bX*20)+'deg','transform' : rotate(bX*20)+'deg'});
 
         }
 
