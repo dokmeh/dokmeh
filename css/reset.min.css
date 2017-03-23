@@ -46,6 +46,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
     line-height: 1;
+    perspective: 1000px;
+    font-family: consolas;
+    font-weight: 100;
 }
 
 ol, ul {

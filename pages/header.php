@@ -12,6 +12,7 @@
         <script src="js/TweenMax.js"></script>
         <script src="js/type.js"></script>
         <script src="js/script.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCWipWck4Dxj9tJHeFzYuDX4b3_ti4qGw"></script>
     </head>
     <body data-page="<?= $page  ?>" class="black">
         <nav class="menu">
