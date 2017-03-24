@@ -14,11 +14,18 @@ html,body {
 
 html *, html *::before, html *::after {
     box-sizing: inherit;
+    text-rendering: optimizeLegibility;
 }
 
 body {
+    line-height: 1;
+    perspective: none;
+    font-family: monospace;
+    font-weight: 100;
     background: #FFDE00;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -42,13 +49,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
-}
-
-body {
-    line-height: 1;
-    perspective: 1000px;
-    font-family: consolas;
-    font-weight: 100;
 }
 
 ol, ul {

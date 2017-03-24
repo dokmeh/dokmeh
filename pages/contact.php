@@ -2,19 +2,19 @@
     <div class="contact-handler">
         <div class="contact-info-h">
             <h3 class="h31">Hi Dokmeh, we want to work with you, and we have a budget and a professional briefing.</h3>
-            <a href="mailto:bussiness@dokmeh-studio.com" class="button">Lets talk about it...</a>
+            <a href="mailto:bussiness@dokmeh-studio.com" class="button"><p class="hide-opacity"> Lets talk about it... </p></a>
         </div>
         <div class="contact-info-h">
             <h3>Contact Information's </h3>
-            <a href="tel:+982122945087">+98 21 22945087</a>
-            <a href="mailto:business@info-dokmeh-studio.com">business@info-dokmeh-studio.com</a>
-            <a href="#">TEHRAN,IRAN</a>
-            <a href="/faq">FAQ</a>
-            <a href="/suport">Suport</a>
+            <a href="tel:+982122945087"><p class="hide-opacity">+98 21 22945087</p></a>
+            <a href="mailto:business@info-dokmeh-studio.com"><p class="hide-opacity">business@info-dokmeh-studio.com</p></a>
+            <a href="#"><p class="hide-opacity">TEHRAN,IRAN</p></a>
+            <a href="/faq"><p class="hide-opacity">FAQ</p></a>
+            <a href="/suport"><p class="hide-opacity">Suport</p></a>
         </div>
         <div class="contact-info-h">
             <h3>How much do you charge for a website</h3>
-            <p class="find-out-jok">Find Out</p>
+            <p class="find-out-jok"><span class="hide-opacity">Find Out</span></p>
         </div>
         <div class="contact-info-h">
             <h3>Lets see what we are doing.</h3>
@@ -55,7 +55,7 @@
     <script type="text/javascript">
         console.log('map');
         // When the window has finished loading create our google map below
-        google.maps.event.addDomListener(window, 'load', init);
+
 
         function init() {
             // Basic options for a simple Google Map

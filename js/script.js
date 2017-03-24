@@ -20,7 +20,7 @@ $(document).ready(function () {
     gyro();
     setTimeout(function () {
         loading('open');
-    },0);
+    }, 0);
     window[$('body').attr('data-page')]();
     $('nav.menu ul li a').click(function () {
         $('title').text($(this).attr('data-title'));
@@ -67,7 +67,7 @@ function home() {
 
     setTimeout(function () {
         loading('close');
-    },2500);
+    }, 2500);
     var el = document.querySelector('.home-disc');
     setTimeout(function () {
         $('.home-container').addClass('op')
@@ -199,18 +199,39 @@ function contact() {
 
     setTimeout(function () {
         loading('close');
-        init();
-    },1800)
+    }, 1800);
     console.log('This is contactt page!');
     console
     var n = 3000;
     setTimeout(function () {
-        var el = document.querySelectorAll('.contact-global-h h3');
-        shuffleLet(el);
+        var el1 = document.querySelectorAll('.contact-global-h h3');
+        var el2 = document.querySelectorAll('.contact-global-h a:not(.socials),.contact-global-h p');
+        /*shuffleLet(el1).then(function () {
+         return shuffleLet(el2);
+         })*/
+
+
+        shuffleLetters(el1)
+            .then(function () {
+
+                var animate = shuffleLetters(el2, {
+                    step: 30,
+                    fps: 15
+                });
+                return animate;
+            })
+            .then(function () {
+                init();
+            })
+            .then(function () {
+                havearrow();
+            })
+
+
     }, n);
     setTimeout(function () {
-        var el = document.querySelectorAll('.contact-global-h a:not(.socials),.contact-global-h p');
-        shuffleLet(el);
+
+
     }, n + 1000);
     var nth = 0;
     $('.find-out-jok').click(function () {
@@ -230,7 +251,9 @@ function contact() {
 
 //About
 function about() {
-    console.log('This is about page!');
+    setTimeout(function () {
+        loading('close');
+    }, 1800);
 }
 
 function rain(status) {
@@ -347,7 +370,7 @@ function gyro() {
     function run() {
         bX = -(xA * 2);
         bY = -(yA * 2);
-        $('.bg-effect').css({'left': (bX) + 'px'});
+        //$('.bg-effect').css({'left': (bX) + 'px'});
         //alert(xA);
 
 
@@ -444,4 +467,9 @@ function shuffleLet(el) {
             fps: 70
         }
     );
+}
+
+function havearrow() {
+    var svgarrow = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36.2 12.7" style="enable-background:new 0 0 36.2 12.7;" xml:space="preserve"><style type="text/css">.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}</style><g><g><line class="st0" x1="35" y1="6.4" x2="0" y2="6.4"/></g><polyline class="st0" points="29.5,0.4 35.5,6.4 29.5,12.4 	"/></g></svg>';
+    $('body').find('.have-arrow').append(svgarrow);
 }
