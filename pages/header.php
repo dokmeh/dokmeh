@@ -4,14 +4,20 @@
         <meta charset="UTF-8">
         <title><?= $title  ?></title>
         <base href="<?= $base  ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#ffde00" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, minimal-ui">
         <link rel="stylesheet" type="text/css" href="css/reset.min.css">
         <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+        <script>
+            document.write('<link href="css/style.css?r='+ Math.floor(Math.random()*100) +'" rel="stylesheet" type="text/css" />');
+        </script>
         <script src="js/jquery.min.js"></script>
+        <script src="js/type.js"></script>
         <script src="js/script.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCWipWck4Dxj9tJHeFzYuDX4b3_ti4qGw"></script>
     </head>
-    <body data-page="<?= $page  ?>">
+    <body data-page="<?= $page  ?>" class="black">
         <nav class="menu">
             <ul>
                  <li class="menu-li"><a href="projects" data-page="projects" data-title="Dokframe-projects">Projects</a></li>
